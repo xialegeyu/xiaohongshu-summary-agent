@@ -24,7 +24,7 @@ Agents are the ideal framework for this solution because they natively handle th
 The system employs a three-layered **Sequential Multi-Agent** architecture that manages data flow from external service to final output:
 
 | Agent | Core Responsibility | Subagents/Tools |
-| --- | --- |
+| --- | --- | --- |
 | Root Agent | Routing Input, Sequential Flow Control. | 2 sub agents |
 | XHS Getter Agent | Data I/O Specialist. Handles extraction from URL and orchestrates parallel tool calls. | search_feeds, get_feed_detail (MCP) |
 | XHS Summarizer Agent | LLM Specialist. Synthesizes raw content into single-sentence summaries. | None (LLM-powered) |
@@ -64,14 +64,15 @@ photos. Other places include the SM Entertainment building and Kwangya store in 
 
 ### Step 1: Install Dependencies
 Activate your Python virtual environment and install necessary packages:
-``
+
+```
 uv pip install google-agent-adk python-dotenv requests
-``
+```
 
 ### Step 2: Configure Environment Variables
 Create a file named .env in your project root and fill in the necessary secrets and URLs.
 
-``
+```
 # Gemini API Key
 GEMINI_API_KEY="YOUR_GEMINI_API_KEY"
 
@@ -79,7 +80,7 @@ GEMINI_API_KEY="YOUR_GEMINI_API_KEY"
 # NOTE: The XHS MCP Server MUST be running in a separate window.
 XHS_MCP_SERVER_URL="http://localhost:18060" 
 XHS_TOKEN="YOUR_XHS_AUTH_TOKEN" 
-``
+```
 
 ### Step 3: Run the External MCP Server
 In a dedicated PowerShell/CMD window, start the xiaohongshu-mcp service (consult the project documentation for the exact command to run the external executable).
@@ -87,6 +88,6 @@ In a dedicated PowerShell/CMD window, start the xiaohongshu-mcp service (consult
 ### Step 4: Run the Agent
 Ensure the MCP server is running and your virtual environment is active. The adk run command will automatically use the get_runner_instance function for startup.
 
-``
+```
 adk run xhs_summary.py
-``
+```
